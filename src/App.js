@@ -1,6 +1,8 @@
-// import logo from './logo.svg';
+import { Button } from 'antd';
 import './App.less';
 import { request } from './api/intercept.js';
+import React, {Component} from 'react'
+
 // console.log(request)
 let data = {
   pageSize: 8,
@@ -19,10 +21,11 @@ request('/UnifyEvent/list', 'get', data)
 .then(res => {
   console.log(res)
 })
+
 function App() {
   return (
     <div >
-      123
+     <Button type="primary">Button</Button>
     </div>
   );
 }
