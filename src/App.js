@@ -1,8 +1,9 @@
-import { Button } from 'antd';
-import './App.less';
-import { request } from './api/intercept.js';
-import React, {Component} from 'react'
 
+import React, { Component } from 'react'
+
+import { Button } from 'antd';
+import { $get } from '@/api/intercept.js';
+import "./App.less"
 // console.log(request)
 let data = {
   pageSize: 8,
@@ -17,15 +18,15 @@ let data = {
   dId: 'dc2eb4a4397547f084d1ab6c25ffe687',
   roleIds: '9ef64a3545fe4afe96d6fd37020a10ed'
 }
-request('/UnifyEvent/list', 'get', data)
-.then(res => {
-  console.log(res)
-})
+$get('/UnifyEvent/list', data)
+  .then(res => {
+    console.log(res)
+  })
 
 function App() {
   return (
-    <div >
-     <Button type="primary">Button</Button>
+    <div>
+      <Button type="primary">Button</Button>
     </div>
   );
 }

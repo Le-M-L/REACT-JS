@@ -19,13 +19,18 @@ if (process.env.NODE_ENV === "development") { //开发环境
 export function request(url, method = "get", data = {}, config = {}) {
     return axiosRequest(url, method, data, config);
 }
+//get
+export const $get  = (url, data = {}) => axiosRequest(url, "get", data);
+//post
+export const $post = (url, data = {}) => axiosRequest(url, "post", data);
+
+
+
+
 
 //重复请求接口过滤
-
 const pending = [];
 const CancelToken = axios.CancelToken;
-
-//重复请求接口过滤
 const filtration = (request) => {
     switch (request.url) {
         case "":
