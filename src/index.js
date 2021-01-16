@@ -1,22 +1,38 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-// Switch 只匹配一个  Route路由挂载 Redirect 重定向 页面找不到的时候匹配
+//HashRouter最外层必须由它包裹
+//Link用于点击跳转
+//Switch路由唯一匹配
+//Route配置路由规则
+//Redirect跳转错误显示的页面
 import { HashRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 //引入路由
-// import { adminRoutes, mainRoutes } from "./routes"
+import { mainRoutes } from "./routes";
+
+console.log(mainRoutes)
 
 ReactDOM.render(
     <Router>
-        <Switch>
+        <Suspense>
+            <Switch>
+                {/* 挂载路由 */}
+                <Route path="/admin" render={routeProps => <App {...routeProps} />} />
 
+                {/* 除了admin的其他路由 路由所有属性全都赋值下去 */}
+                {
+                    mainRoutes.map(route => <Route key={route.path} {...route} />)
+                }
 
-            <App />
+                {/* 找不到路径就使用404 */}
+                <Redirect to="/login" from="/" />
+                <Redirect to="/404" />
 
-
-        </Switch>
-    </Router>,
+            </Switch>
+        </Suspense>
+    </Router>
+    ,
     document.getElementById('root')
 );
 
