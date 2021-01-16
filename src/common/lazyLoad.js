@@ -9,7 +9,7 @@ export default function lazyLoad(componentfn) {
                 component: null
             }
         }
-        async componentWillMount() {
+        async UNSAFE_componentWillMount() {
             const {default: component} = await componentfn();
             this.setState({component})
         }
