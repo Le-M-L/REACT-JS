@@ -22,11 +22,23 @@ $get('/UnifyEvent/list', data)
   .then(res => {
     console.log(res)
   })
+function handleClick(params) {
+  window.less.modifyVars(//更换主题颜色要这么写
+    {
+      '@primary-color': '#e64e14',
+      '@btn-primary-bg': '#5d72cc',
+    }
+  )
+    .then(() => { console.log('success') })
+    .catch(error => {
+      console.log(error);
+    });
+}
 
 function App() {
   return (
     <div>
-      <Button type="primary">Button</Button>
+      <Button type="primary" onClick={handleClick}>Button</Button>
     </div>
   );
 }
