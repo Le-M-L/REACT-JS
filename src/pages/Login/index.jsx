@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Checkbox, Spin } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import "./canvarBg"
+import ReactCanvasNest from 'react-canvas-nest';
 const rules = {
     username: [
         {
@@ -43,7 +43,7 @@ const FormDom = () => {
 
             <Form.Item>
                 <Form.Item name="remember" valuePropName="checked" noStyle>
-                    <Checkbox>保存密码</Checkbox>
+                    <Checkbox style={{ color: '#0ab5e4' }}>保存密码</Checkbox>
                 </Form.Item>
 
                 <a style={style.forget} href="">
@@ -63,22 +63,23 @@ const FormDom = () => {
 const Login = () => {
     let loading = false;
     return (
-        <div className="content--canvas">
-        <div  style={style.loginBox}>
-            <Spin spinning={loading}>
-                <h1 style={{ textAlign: "center" ,color:'#0ab5e4'}}>
-                    <img
-                        style={{ height: "44px", marginRight: 16 }}
-                        alt="logo"
-                        src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
-                    />
+        <div style={{ width:'100%',height:'100%'}} className="content--canvas">
+            <ReactCanvasNest className='canvasNest' config={{ pointColor: ' 255, 255, 255 ' }} style={{ width:'100%',height:'100%'}} />
+            <div style={style.loginBox}>
+                <Spin spinning={loading}>
+                    <h1 style={{ textAlign: "center", color: '#0ab5e4' }}>
+                        <img
+                            style={{ height: "44px", marginRight: 16 }}
+                            alt="logo"
+                            src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+                        />
                     Ant Design
                 </h1>
-                <div style={{ marginTop: 12, textAlign: "center", marginBottom: 20 }}>Ant Design</div>
-                {/* 登录页表单 */}
-                <FormDom />
-            </Spin>
-        </div>
+                    <div style={{ marginTop: 12, textAlign: "center", marginBottom: 20, color: '#0ab5e4' }}>Ant Design</div>
+                    {/* 登录页表单 */}
+                    <FormDom />
+                </Spin>
+            </div>
         </div>
     );
 };
@@ -90,8 +91,8 @@ const style = {
         left: "50%",
         top: "30%",
         transform: "translate(-50%,-50%)",
-        zIndex:'11',
-        color:'#0ab5e4'
+        zIndex: '11',
+        color: '#0ab5e4 !important'
     },
     submit: {
         width: "100%",
