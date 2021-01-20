@@ -33,8 +33,7 @@ const pending = [];
 const CancelToken = axios.CancelToken;
 const filtration = (request) => {
     switch (request.url) {
-        case "":
-            break;
+        case "": break;
         default:
             removePending(request);
             request.cancelToken = new CancelToken((c) => {
