@@ -1,45 +1,31 @@
 
-import React, { Component } from 'react'
+import React from 'react';
+import { Switch, Route, Redirect } from "react-router-dom";
+import { adminRoutes } from "@/routes";//引入路由
+import Frame from '@/components/Frame/index';//引入form组件
+// import { $get } from '@/api/intercept.js';
 
-import { Button } from 'antd';
-import { $get } from '@/api/intercept.js';
-import "./App.less"
-// console.log(request)
-// let data = {
-//   pageSize: 8,
-//   pageNow: 1,
-//   reportPersonId: '7a330a258ccc47858ae7f6f39d6030af',
-//   reportPersonDeptId: 'dc2eb4a4397547f084d1ab6c25ffe687',
-//   listType: 1,
-//   eventState: '1,6,10,11,12',
-//   deptLevel: 7,
-//   timestamp: '1610622147000',
-//   nonce: 'BD36sjBKHEcJpAtXsJ2HWJGRy3RzPxds',
-//   dId: 'dc2eb4a4397547f084d1ab6c25ffe687',
-//   roleIds: '9ef64a3545fe4afe96d6fd37020a10ed'
-// }
-// $get('/UnifyEvent/list', data)
-//   .then(res => {
-//     console.log(res)
-//   })
-function handleClick(params) {
-  window.less.modifyVars(//更换主题颜色要这么写
-    {
-      '@primary-color': '#e64e14',
-      '@btn-primary-bg': '#5d72cc',
-    }
-  )
-    .then(() => { console.log('success') })
-    .catch(error => {
-      console.log(error);
-    });
-}
 
-function App() {
+
+console.log(adminRoutes)
+
+function App(props) {
   return (
-    <div>
-      <Button type="primary" onClick={handleClick}>Button</Button>
-    </div>
+    <Frame>
+      <Switch>
+        {
+          adminRoutes.map(route => {
+            return <Route key={route.path} path={route.path} exact={route.exact} render={routeProps => {
+              return <route.component {...routeProps} />
+            }} />
+          })
+        }
+        {/* 当访问的是/admin路由的时候 默认展示  重定向 第一个地址 */}
+        <Redirect to={adminRoutes[0].path} from="/admin" />
+        {/* 管理后台查找不到 给404 */}
+        <Redirect to="/404" />
+      </Switch>
+    </Frame>
   );
 }
 
