@@ -1,6 +1,5 @@
 //路由懒加载
 import lazyLoad from '@/common/lazyLoad'
-import { MacCommandOutlined, CheckSquareOutlined, AntDesignOutlined, SendOutlined} from '@ant-design/icons';
 import MyIcon from "../assets/icon"
 //其他地址,
 export const mainRoutes = [
@@ -35,10 +34,10 @@ export const adminRoutes = [
         icon: <MyIcon type="icon-AntDesign" />
     },
     {
-        path: '/admin/vue',//组件相对路径
-        name: 'vue',//路由别名
+        path: '/admin/Vue',//组件相对路径
+        name: 'Vue',//路由别名
         component: lazyLoad(() => import('@/pages/Dashboard')),//组件地址
-        title: 'VUE',
+        title: 'Vue',
         exact: true,//全匹配
         isShow: true,//是否显示
         icon: <MyIcon type="icon-vue" />

@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import "./index.less"
+import "@styles/index.less"
 //HashRouter最外层必须由它包裹
 //Link用于点击跳转
 //Switch路由唯一匹配
