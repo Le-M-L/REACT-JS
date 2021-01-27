@@ -1,9 +1,11 @@
-import React from "react";
-import { Layout, Menu, Breadcrumb, Dropdown, Badge } from "antd";
-import { LogoutOutlined, SettingOutlined, UserOutlined, BellOutlined } from '@ant-design/icons';
+import React, { useState } from "react";
+import { Layout, Menu, Breadcrumb, Dropdown, Badge, Tabs,Button } from "antd";
+import { LogoutOutlined, SettingOutlined, UserOutlined, BellOutlined ,MenuUnfoldOutlined,
+    MenuFoldOutlined } from '@ant-design/icons';
 import { withRouter } from "react-router-dom"; //使组件中内部可以使用路由跳转 高阶函数
 import { adminRoutes } from "@/routes";
 import style from "./Frame.module.less";
+import TabsPages from "../TabsPages";
 const { Header, Content, Sider, Footer } = Layout;
 
 const routes = adminRoutes.filter((route) => route.isShow);
@@ -65,10 +67,14 @@ const HeaderC = () => {
         </Header>
     );
 };
-
+const callback =(key) => {
+    console.log(key);
+  }
+  const { TabPane } = Tabs;
 //中间主体内容
 const ContentC = (props) => {
     let { location } = props;
+    let [collapsed,setCollapsed] = useState(true);
     let selectKeys = routes.find((item) => item.path === location.pathname);
     return (
         <Layout>
@@ -76,9 +82,10 @@ const ContentC = (props) => {
                 <Sider width={200} className="site-layout-background">
                     <Menu
                         mode="inline"
+                        inlineCollapsed={collapsed}
                         defaultSelectedKeys={selectKeys && selectKeys.path}
                         defaultOpenKeys={["sub1"]}
-                        style={{ height: "100%", borderRight: 0 }}
+                        style={{  borderRight: 0 }}
                     >
                         {/* 动态侧栏 */}
                         {routes.map((route) => {
@@ -90,15 +97,19 @@ const ContentC = (props) => {
                             );
                         })}
                     </Menu>
+                    <Button type="primary" onClick={() => setCollapsed(!collapsed)} style={{ marginBottom: 16 }}>
+                        {collapsed? <MenuUnfoldOutlined /> :<MenuFoldOutlined/>}
+                        </Button>
                 </Sider>
             ) : null}
 
             <Layout style={{ padding: "0 24px 24px" }}>
-                <Breadcrumb style={{ margin: "16px 0" }}>
+                {/* <Breadcrumb style={{ margin: "16px 0" }}>
                     <Breadcrumb.Item>Home</Breadcrumb.Item>
                     <Breadcrumb.Item>List</Breadcrumb.Item>
                     <Breadcrumb.Item>App</Breadcrumb.Item>
-                </Breadcrumb>
+                </Breadcrumb> */}
+                <TabsPages />
                 <Content
                     className="site-layout-background"
                     style={{
