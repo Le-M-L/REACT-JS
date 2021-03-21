@@ -119,11 +119,11 @@ module.exports = override(
     addDecoratorsLegacy(),                              // 配置装饰器
     addWebpackAlias({                                   //增加路径别名的处理
         "@": path.resolve("./src"),
-        "@pages": path.resolve("./src/pages"),
-        "@images": path.resolve("./src/assets/images"),
-        "@styles": path.resolve("./src/assets/styles"),
-        "@reducers": path.resolve("./src/reducers"),
-        "@components": path.resolve("./src/components"),
+        // "@pages": path.resolve("./src/pages"),
+        // "@images": path.resolve("./src/assets/images"),
+        // "@styles": path.resolve("./src/assets/styles"),
+        // "@reducers": path.resolve("./src/reducers"),
+        // "@components": path.resolve("./src/components"),
     }),
     // setWebpackPublicPath(process.env.NODE_ENV === 'production' && '/antd-theme-demo'),
     addWebpackPlugin(new AntDesignThemePlugin(options)),
