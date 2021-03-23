@@ -6,10 +6,7 @@ import Frame from '@/components/Frame/index';//引入form组件
 // import { $get } from '@/api/intercept.js';
 
 
-
-console.log(adminRoutes)
-
-function App(props) {
+function App (props) {
   return (
     <Frame>
       <Switch>
