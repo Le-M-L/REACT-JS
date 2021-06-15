@@ -4,7 +4,6 @@ import App from './App';
 // import '@/config/design/index.less';
 import { Provider } from 'react-redux';
 import store from './reducers';
-import { AppProviders } from './components/comps/Application';
 //HashRouter最外层必须由它包裹
 //Link用于点击跳转
 //Switch路由唯一匹配
@@ -19,7 +18,6 @@ const Main = () => {
         <Provider store={store}>
             <Router>
                 <Suspense>
-                    <AppProviders>
                         <Switch>
                             {/* 挂载路由 */}
                             <Route path="/admin" render={(routeProps) => <App {...routeProps} />} />
@@ -32,7 +30,6 @@ const Main = () => {
                             <Redirect to="/login" from="/" />
                             <Redirect to="/404" />
                         </Switch>
-                    </AppProviders>
                 </Suspense>
             </Router>
         </Provider>

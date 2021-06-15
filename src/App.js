@@ -2,13 +2,11 @@
 import React from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
 import { adminRoutes } from "@/routes";//引入路由
-import Frame from '@/components/Frame/index';//引入form组件
 // import { $get } from '@/api/intercept.js';
 
 
 function App (props) {
   return (
-    <Frame>
       <Switch>
         {
           adminRoutes.map(route => {
@@ -22,7 +20,6 @@ function App (props) {
         {/* 管理后台查找不到 给404 */}
         <Redirect to="/404" />
       </Switch>
-    </Frame>
   );
 }
 
