@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,Suspense } from 'react';
 import { Route, Redirect, withRouter } from "react-router-dom"
 import './index.css';
 import { Routers } from "./routers"
@@ -19,6 +19,7 @@ import HomeNews from './views/Home_News'
                     <MyNavLink className="link" to={{pathname:'/home/home-news',state:{id:123,title:'title'}}} children={<div>About</div>} />
                 </div>
                 <div>
+                    <Suspense fallback={<h1>加载中。。。。</h1>} >
                     {/* 注册路由 */}
                     {
                         Routers.map(router => {
@@ -28,6 +29,7 @@ import HomeNews from './views/Home_News'
                     <Route path="/home/home-news" component={HomeNews} />
                     {/* 都匹配不上 进行重定向 */}
                     <Redirect to="/home" />
+                    </Suspense>
                 </div>
             </div>
         )
