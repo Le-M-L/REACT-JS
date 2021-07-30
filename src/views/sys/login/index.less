@@ -1,7 +1,57 @@
 @header-height: 48px;
-.box{
-    .login{
-        height:@header-height;
-        color:@primary-color;
+.loginBox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    @media (max-width: '1200px') {
+        background-color: #293146;
+
+        .loginBox-form {
+            background-color: #fff;
+        }
+    }
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin-left: -48%;
+        background-image: url('~@/assets/svg/login-bg.svg');
+        background-position: 100%;
+        background-repeat: no-repeat;
+        background-size: auto 100%;
+        content: '';
+        @media (max-width: '1200px') {
+            display: none;
+        }
+    }
+    .container{
+        height: 100%;
+        padding: 8px 40px;
+        margin: 0 auto;
+        >div{
+            display: flex;
+            height: 100%;
+            >div:nth-child(1){
+                overflow: hidden;
+                height: 100%;
+                padding-left: 16px;
+                margin-right: 16px;
+                width: 50%;
+            }
+            >div:nth-child(2){
+                width: 50%;
+                height: auto;
+                .container-form{
+                    position: relative;
+                    width: 100%;
+                    padding: 32px 20px;
+                    border-radius: 6px;
+                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);;
+                    margin: auto;
+                }
+            }
+        }
     }
 }
