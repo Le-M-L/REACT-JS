@@ -14,7 +14,6 @@ import store from './store';
 import { AppProviders } from './components/Application';
 import App from './App';
 import "./design/index.less"
-import Layout from '@/layouts/default';//引入form组件
 
 
 const Main = () => {
@@ -29,7 +28,7 @@ const Main = () => {
                             {/* 除了admin的其他路由 路由所有属性全都赋值下去 */}
                             {mainRoutes.map((route) => <Route key={route.path} {...route} />)}
                             {/* 找不到路径就使用404 */}
-                            <Redirect to="/login" from="/" />
+                            <Redirect to="/login" exact from="/" />
                             <Redirect to="/404" />
                         </Switch>
                     </AppProviders>

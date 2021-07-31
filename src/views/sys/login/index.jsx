@@ -10,7 +10,7 @@ export default class Login extends Component {
         },
     };
     onFinish = (values) => {
-        this.props.history.push('/admin')
+        this.props.history.replace('/admin')
         console.log('Success:', values);
     };
 
