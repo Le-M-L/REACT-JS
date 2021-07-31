@@ -10,6 +10,7 @@ function App() {
         {
           adminRoutes.map(route => {
             return <Route key={route.path} path={route.path} exact={route.exact} render={routeProps => {
+              console.log(routeProps)
               return <route.component {...routeProps} />
             }} />
           })

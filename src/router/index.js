@@ -21,6 +21,6 @@ export const adminRoutes = [
     title: 'user',
     exact: true,//全匹配
     isShow: true,//是否显示
-    icon: 'icon-react'
+    icon: 'icon-react',
   },
 ]

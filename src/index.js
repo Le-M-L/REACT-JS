@@ -14,6 +14,7 @@ import store from './store';
 import { AppProviders } from './components/Application';
 import App from './App';
 import "./design/index.less"
+import Layout from '@/layouts/default';//引入form组件
 
 
 const Main = () => {
