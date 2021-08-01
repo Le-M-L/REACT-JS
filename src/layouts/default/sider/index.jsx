@@ -1,12 +1,14 @@
-import Menu from "../menu"
+import { Layout } from "antd"
+import "./index.less"
+import LayoutMenu from "../menu"
 
-const Sider = () => {
+const LayoutSider = () => {
     return  (
-        <div>
+        <Layout.Sider className="layout-sider" >
             Sider
-            <Menu/>
-        </div>
+            <LayoutMenu/>
+        </Layout.Sider>
     )
 }
 
-export default Sider
+export default LayoutSider

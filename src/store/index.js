@@ -1,10 +1,10 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga'
 //纯函数
-import {count} from "./reducer";
+import rootReducer from "./reducer";
 
-const rootReducer = combineReducers({
-    count
-})
+const sagaMiddleware = createSagaMiddleware();
+const middlewares = [sagaMiddleware]
 
 //创建redux创建方法    将方法传入到创建里
 const store = createStore(rootReducer,

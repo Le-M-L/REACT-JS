@@ -3,6 +3,7 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const CracoLessPlugin = require('craco-less');
 const webpack = require('webpack');
 const path = require('path');
+const { generateModifyVars } = require('./build/generate/generateModifyVars');
 module.exports = {
     babel: {
         plugins: [
@@ -29,12 +30,24 @@ module.exports = {
             options: {
                 lessLoaderOptions: {
                     lessOptions: {
-                        modifyVars: { '@primary-color': '#1DA57A' },
+                        modifyVars: generateModifyVars(),
                         javascriptEnabled: true,
                         modules: true,
                     },
                 },
-                modules: true,
+                cssLoaderOptions: {
+                    modules: {
+                        localIdentName: '[local]__[hash:base64:5]',
+                        // 回调必须返回 `local`，`global`  默认global
+                        mode: (resourcePath) => {
+                            if (/(modules|local)\.(less|css)$/i.test(resourcePath)) {
+                                return 'local';
+                            }
+
+                            return 'global';
+                        },
+                    },
+                },
             },
         },
     ],
