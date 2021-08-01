@@ -7,6 +7,7 @@ const defaultState = {
 };
 
 const count = (state = defaultState, action) => {
+    console.log(action)
     switch (action.type) {
         case INCREASE:
             return { count: state.count + action.data };
