@@ -1,47 +1,78 @@
+import { useState, useEffect } from "react"
+import { useHistory, useLocation, useParams, useRouteMatch } from "react-router-dom"
 import { connect } from 'react-redux';
 import { Menu } from 'antd';
-import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons';
-import { increase, decrease } from '@/store/actions/count';
-const { SubMenu } = Menu;
-const LayoutMenu = ({ count, increase }) => {
+import { UserOutlined } from '@ant-design/icons';
+// import classnames from "classnames"
+const SubMenu = (props) => {
+    return <Menu.SubMenu {...props}   >
+        {
+            props.children && props.children.map(item => {
+                return item.children ?
+                    <SubMenu key={item.path} title={item.title} >{item.children}</SubMenu> :
+                    <Menu.Item key={item.path} icon={<UserOutlined />}> {item.title} </Menu.Item>
+            })
+        }
+    </Menu.SubMenu>
+}
+
+
+const LayoutMenu = (props) => {
+    // 主题
+    const { theme } = props;
+    // 展开的菜单
+    const [openKeys, setOpenKeys] = useState([])
+    const { backMenuList } = props;
+    console.log(backMenuList)
+    const history = useHistory();
+    const location = useLocation();
+    const params = useParams()
+    const routeMatch = useRouteMatch()
     const handleClick = ({ key }) => {
-        increase(2);
+        history.push(key)
+        // setOpenKeys([location.pathname])
+       
     };
+
+    // subMenu 展开/关闭的回调
+    const openChange = (openKey) => {
+        console.log(openKey)
+        setOpenKeys([...openKey])
+    }
+
+    useEffect(() => {
+        
+        return () => {
+
+        }
+    },[])
 
     return (
         <div>
-            <span style={{ color: '#fff' }}> {count.count}</span>
-            <Menu onClick={handleClick} theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                <Menu.Item key="1" icon={<UserOutlined />}>
-                    nav 1
-                </Menu.Item>
-                <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                    nav 2
-                </Menu.Item>
-                <Menu.Item key="3" icon={<UploadOutlined />}>
-                    nav 3
-                </Menu.Item>
-                <SubMenu key="sub1" icon={<UserOutlined />} title="subnav 1">
-                    <Menu.Item key="1">option1</Menu.Item>
-                    <Menu.Item key="2">option2</Menu.Item>
-                    <Menu.Item key="3">option3</Menu.Item>
-                    <Menu.Item key="4">option4</Menu.Item>
-                </SubMenu>
+            <Menu onClick={handleClick} onOpenChange={openChange} theme={theme} mode="inline"  openKeys={openKeys}>
+                {
+                    backMenuList.map(item => (item.children ?
+                        <SubMenu key={item.path} title={item.title} icon={<UserOutlined />} >{item.children}</SubMenu> :
+                        <Menu.Item key={item.path} icon={<UserOutlined />}> {item.title} </Menu.Item>))
+                }
+
             </Menu>
         </div>
     );
 };
-const mapStateToProps = ({ count }) => {
+
+const mapStateToProps = ({ routeMenu: { backMenuList, frontMenuList } }) => {
     return {
-        count,
+        backMenuList,
+        frontMenuList
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        increase: (...args) => dispatch(increase(...args)),
-        decrease: (...args) => dispatch(decrease(...args)),
+
     };
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(LayoutMenu);

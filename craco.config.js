@@ -56,6 +56,16 @@ module.exports = {
         alias: {
             '@': path.resolve(__dirname, 'src'),
         },
+        configure: (webpackConfig, { env, paths }) => {
+            // 修改build的生成文件名称
+            paths.appBuild = 'dist';
+            webpackConfig.output = {
+                ...webpackConfig.output,
+                path: path.resolve(__dirname, 'dist'),
+                publicPath: '/',
+            };
+            return webpackConfig;
+        },
         plugins: [
             // 删除console debugger
             // new UglifyJsPlugin({

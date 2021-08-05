@@ -14,8 +14,8 @@ import store from './store';
 import { AppProviders } from './components/Application';
 import App from './App';
 import "./design/index.less"
-
-
+import { initAppConfigStore } from '@/utils/logics/initAppConfig';
+initAppConfigStore()
 const Main = () => {
     return (
         <Provider store={store}>

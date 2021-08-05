@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 
-import count from "./count"
+import routeMenu from "./routeMenu"
+import app from "./app"
 const rootReducer = {
-    count,
+    routeMenu,
+    app
 };
 
 export const createReducer = (asyncReducers) =>

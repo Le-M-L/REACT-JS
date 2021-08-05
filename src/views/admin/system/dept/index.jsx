@@ -4,7 +4,7 @@ export default class Dept extends Component {
     render() {
         return (
             <div>
-                123
+                dept
             </div>
         )
     }
