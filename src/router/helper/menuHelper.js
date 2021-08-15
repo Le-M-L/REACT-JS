@@ -9,7 +9,7 @@ export function getAllParentPath(treeData, path) {
 }
 
 // 拼接父级路径
-function joinParentPath(menus, parentPath = ''){
+ export function joinParentPath(menus, parentPath = ''){
     for (let index = 0; index < menus.length; index++) {
         const menu = menus[index];
         // 注意，以/开头的嵌套路径将被视为根路径。
@@ -57,7 +57,6 @@ export function transformRouteToMenu(routeModList, routerMapping = false) {
                 name: title,
                 hideMenu, // 
                 path: node.path,
-                component:node.component,
                 ...(node.redirect ? { redirect: node.redirect } : {}),
             };
         },
