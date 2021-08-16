@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Layout from '@/layouts/default'; //引入form组件
-
+// import store from "@/store"
 function App(props) {
     const adminRoutes = props.routesList || [];
     console.log(adminRoutes)

@@ -8,7 +8,7 @@ AppContext.displayName = "AppContext"
 
 
 export const AppProvider = ({ children }) => {
-    const [isMobile, setIsMobile] = useState(null);
+    const [isMobile] = useState(null);
 
     // const createBreakpointListen = ({ screenMap, sizeEnum, width }) => {
     //     const lgWidth = screenMap.get(sizeEnum.LG);

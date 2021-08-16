@@ -1,5 +1,4 @@
 import { cloneDeep, omit } from 'lodash-es';
-import store from '@/store';
 import { joinParentPath } from "./menuHelper"
 
 // 返回一级路由菜单

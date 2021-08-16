@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useHistory, useLocation, useParams, useRouteMatch } from "react-router-dom"
+import { useHistory,  } from "react-router-dom"
 import { connect } from 'react-redux';
 import { Menu } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
@@ -19,37 +19,36 @@ const SubMenu = (props) => {
 
 const LayoutMenu = (props) => {
     // 主题
-    const { theme } = props;
+    const { theme, mode = "inline" } = props;
     // 展开的菜单
     const [openKeys, setOpenKeys] = useState([])
     const { backMenuList } = props;
-    console.log(backMenuList)
     const history = useHistory();
-    const location = useLocation();
-    const params = useParams()
-    const routeMatch = useRouteMatch()
     const handleClick = ({ key }) => {
         history.push(key)
         // setOpenKeys([location.pathname])
-       
     };
 
     // subMenu 展开/关闭的回调
     const openChange = (openKey) => {
-        console.log(openKey)
         setOpenKeys([...openKey])
     }
 
+    const className = () => {
+        let arr = ['']
+        return arr.join(' ')
+    }
+
     useEffect(() => {
-        
+
         return () => {
 
         }
-    },[])
+    }, [])
 
     return (
         <div>
-            <Menu onClick={handleClick} onOpenChange={openChange} theme={theme} mode="inline"  openKeys={openKeys}>
+            <Menu onClick={handleClick} className={className()} onOpenChange={openChange} theme={theme} mode={mode} openKeys={openKeys}>
                 {
                     backMenuList.map(item => (item.children ?
                         <SubMenu key={item.path} title={item.title} icon={<UserOutlined />} >{item.children}</SubMenu> :
@@ -60,6 +59,8 @@ const LayoutMenu = (props) => {
         </div>
     );
 };
+
+
 
 const mapStateToProps = ({ routeMenu: { backMenuList, frontMenuList } }) => {
     return {

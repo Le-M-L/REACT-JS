@@ -1,5 +1,4 @@
 import { Menu, Dropdown } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
 const menu = (
     <Menu>
         <Menu.Item key="1">

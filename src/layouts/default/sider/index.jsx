@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Layout, Button } from "antd"
 import "./index.less"
 import LayoutMenu from "../menu"

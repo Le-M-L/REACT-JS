@@ -33,7 +33,6 @@ export default class Login extends Component {
                                     wrapperCol={{ span: 20 }}
                                     initialValues={{ remember: true }}
                                     onFinish={this.onFinish}
-                                    initialValues={this.state.initialValues}
                                     onFinishFailed={this.onFinishFailed}
                                 >
                                     <Form.Item

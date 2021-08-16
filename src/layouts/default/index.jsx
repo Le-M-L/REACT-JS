@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from 'antd';
 import LayoutContent from './content';
-import LayoutFooter from './footer';
+// import LayoutFooter from './footer';
 import LayoutHeader from './header';
 import LayoutSider from './sider';
 const DefaultLayout = ({ children }) => {
