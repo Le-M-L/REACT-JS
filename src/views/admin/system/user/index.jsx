@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
-import { Route } from "react-router-dom";
 
 export default class User extends Component {
 
     render () {
         return (
             <div>
-                123
-                    <Route path="/admin/user/user1" exact>
-                        <h1>123</h1>
-                        </Route>
+                123444
+                 
             </div>
         )
     }

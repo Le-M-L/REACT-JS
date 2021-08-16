@@ -62,5 +62,6 @@ export function transformRouteToMenu(routeModList, routerMapping = false) {
         },
     });
     joinParentPath(list);
+    console.log(list);
     return cloneDeep(list);
 }

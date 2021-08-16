@@ -3,17 +3,15 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Layout from '@/layouts/default'; //引入form组件
 // import store from "@/store"
-function App(props) {
-    const adminRoutes = props.routesList || [];
-    console.log(adminRoutes)
+function App({routesList}) {
     return (
         <Layout className="App">
             <Switch>
-                {adminRoutes.map((route) => {
+                {routesList.map((route) => {
                     return (
                         <Route
-                            key={route.fullPath}
-                            path={route.fullPath}
+                            key={route.path}
+                            path={route.path}
                             exact={route.exact}
                             render={(routeProps) => {
                                 return <route.component {...routeProps} />;
@@ -22,7 +20,7 @@ function App(props) {
                     );
                 })}
                 {/* 当访问的是/admin路由的时候 默认展示  重定向 第一个地址 */}
-                {adminRoutes.length && <Redirect to={adminRoutes[0].fullPath} from="/admin" />}
+                {routesList.length && <Redirect to={routesList[0].path} from="/admin" />}
                 {/* 管理后台查找不到 给404 */}
                 <Redirect to="/404" />
             </Switch>
