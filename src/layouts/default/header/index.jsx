@@ -13,7 +13,7 @@ const LayoutHeader = () => {
         <Layout.Header className={prefixCls}>
             <AppLogin />
             <div className={`${prefixCls}-content`}>
-                <LayoutMenu mode="horizontal" />
+                <LayoutMenu isHorizontal mode="horizontal" />
             </div>
             <div className={`${prefixCls}-action`}>
                 <UserDropDown className={`${prefixCls}-action_item userDropDown`} />
