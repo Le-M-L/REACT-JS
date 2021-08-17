@@ -14,6 +14,6 @@ export function initAppConfigStore() {
     store.dispatch(setBackMenuList(backMenuList));
     // 初始化路由表为一级路由 并注册
     let data = setRoutesList(deepRoute(adminRoutes))
-    console.log(data);
+    console.log(adminRoutes,backMenuList);
     store.dispatch(data);
 }

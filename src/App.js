@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Layout from '@/layouts/default'; //引入form组件
 // import store from "@/store"
 function App({routesList}) {
+    console.log(routesList);
     return (
         <Layout className="App">
             <Switch>
