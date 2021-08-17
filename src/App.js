@@ -2,9 +2,9 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Layout from '@/layouts/default'; //引入form组件
-// import store from "@/store"
-function App({routesList}) {
-    console.log(routesList);
+
+// routesList 路由地址
+function App({ routesList }) {
     return (
         <Layout className="App">
             <Switch>
