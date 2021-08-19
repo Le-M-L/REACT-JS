@@ -13,27 +13,30 @@ import { mainRoutes } from '@/router';
 import store from './store';
 import { AppProviders } from './components/Application';
 import App from './App';
-import "./design/index.less"
+import './design/index.less';
 import { initAppConfigStore } from '@/utils/logics/initAppConfig';
-initAppConfigStore()
+initAppConfigStore();
+
 const Main = () => {
     return (
         <Provider store={store}>
-            <Router>
-                <Suspense>
-                    <AppProviders>
-                        <Switch>
-                            {/* 挂载路由 */}
-                            <Route path="/admin" render={(routeProps) => <App {...routeProps} />} />
-                            {/* 除了admin的其他路由 路由所有属性全都赋值下去 */}
-                            {mainRoutes.map((route) => <Route key={route.path} {...route} />)}
-                            {/* 找不到路径就使用404 */}
-                            <Redirect to="/login" exact from="/" />
-                            <Redirect to="/404" />
-                        </Switch>
-                    </AppProviders>
-                </Suspense>
-            </Router>
+                <Router>
+                    <Suspense>
+                        <AppProviders>
+                            <Switch>
+                                {/* 挂载路由 */}
+                                <Route path="/admin" render={(routeProps) => <App {...routeProps} />} />
+                                {/* 除了admin的其他路由 路由所有属性全都赋值下去 */}
+                                {mainRoutes.map((route) => (
+                                    <Route key={route.path} {...route} />
+                                ))}
+                                {/* 找不到路径就使用404 */}
+                                <Redirect to="/login" exact from="/" />
+                                <Redirect to="/404" />
+                            </Switch>
+                        </AppProviders>
+                    </Suspense>
+                </Router>
         </Provider>
     );
 };
