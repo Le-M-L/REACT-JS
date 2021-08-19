@@ -1,6 +1,6 @@
 import { put, takeEvery } from 'redux-saga/effects';
 // tabeEvery 捕捉每一个action   put也可以发送action到store里面
-
+import {SETPAGELOADING} from "../constant/app"
 function test() {
     return new Promise((r) => {
         setTimeout(() => {
@@ -16,6 +16,7 @@ function test() {
 function* fetchUser() {
     // 模拟异步操作
     let getAjax = yield test();
+    console.log('saga=========',getAjax);
     // let actions = {
     //     type: INCREASE,
     //     data: getAjax.data.list,
@@ -28,5 +29,5 @@ function* fetchUser() {
 
 export default function* countSaga() {
     // 很重要的一点，进行捕获 组件里面发出的tyepe类型
-    // yield takeEvery(INCREASE, fetchUser);
+    yield takeEvery(SETPAGELOADING, fetchUser);
 }

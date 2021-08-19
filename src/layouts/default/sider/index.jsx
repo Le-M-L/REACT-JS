@@ -1,49 +1,58 @@
-import { useState } from "react"
-import { Layout,Button } from "antd"
+import React from "react"
+import { useState, useEffect } from "react"
+import { Layout, Button } from "antd"
+import { connect } from "react-redux"
 import LayoutMenu from "../menu"
-import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
-import {useMenuSetting} from "@/hooks/setting/useMenuSetting"
+// import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
+import { useMenuSetting } from "@/hooks/setting/useMenuSetting"
 import "./index.less"
+import { setRoutesList, setPageLoading } from "@/store/actions/app"
 import store from "@/store"
-import { setRoutesList } from "@/store/actions/app"
-import lazyLoad from "@/router/lazyLoad"
-const LayoutSider = () => {
+const LayoutSider = (props) => {
+    console.log(props);
     const [collapsed, setCollapsed] = useState(false);
     const [theme] = useState('dark');
     const getMode = () => {
 
     }
+
     const getSplitType = () => {
 
     }
-    
-    const { routesList } = useMenuSetting()
+
     const handleClick = (e) => {
-        store.dispatch(setRoutesList([
-            ...routesList,
-            {
-                path: 'user333', //组件相对路径
-                component: lazyLoad(() => import('@/views/admin/system/user')), //组件地址
-                title: '用户管理233',
-                exact: true, //全匹配
-                meta: {
-                    title: '用户管理233',
-                },
-            },
-        ]))
+        props.dispatch(setPageLoading(false))
+        console.log(store.getState());
     }
+
+    const { getCollapsed } = useMenuSetting()
+
+    useEffect(() => {
+        console.log();
+    })
+
     return (
-        
+
         <Layout.Sider collapsible theme={theme} collapsed={collapsed} onCollapse={() => setCollapsed(!collapsed)} className="layout-sider" >
+            <span style={{ color: 'red' }}>
+                {
+                    `${getCollapsed}`
+                }
+                {`${store.getState().app.dd}`}
+            </span>
+            <Button onClick={handleClick} >按钮</Button>
+
             <LayoutMenu theme={theme} menuMode={getMode()} splitType={getSplitType()} />
-            <Button onClick={handleClick.bind(this)} >按钮</Button>
-            {
-               routesList.map(item => {
-                   return <span style={{color:'red'}} key={item.path} >{item.title}</span>
-               })
-            }
+
         </Layout.Sider>
     )
 }
+const mapStateToProps = ({ app: { dd} }) => {
+    return {
+        dd
+    };
+};
+export default connect(mapStateToProps)(LayoutSider)
 
-export default LayoutSider
+
+

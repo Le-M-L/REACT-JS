@@ -1,20 +1,13 @@
-import React, { Component } from 'react'
-// import { useMenuSetting } from "@/hooks/setting/useMenuSetting"
+
+const User = () => {
 
 
-export default class User extends Component {
-    constructor(){
-        super()
-    }
+    return (
 
-    componentDidMount(){
-    }
-
-    render () {
-        return (
-            <div>
-            111111111111
-            </div>
-        )
-    }
+        <span style={{ color: 'red' }}  >
+            123123
+        </span>
+    )
 }
+
+export default User
