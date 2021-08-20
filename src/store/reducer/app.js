@@ -1,6 +1,13 @@
 import { ROUTESLIST, SETPAGELOADING } from '../constant/app';
 import { MenuTypeEnum, MenuModeEnum, TriggerEnum, MixSidebarTriggerEnum } from '@/enums/menuEnum';
-
+import {
+    ContentEnum,
+    PermissionModeEnum,
+    ThemeEnum,
+    RouterTransitionEnum,
+    SettingButtonPositionEnum,
+    SessionTimeoutProcessingEnum,
+} from '@/enums/appEnum';
 const defaultState = {
     routesList: [], // 路由表
     getMenuSetting: {
@@ -28,7 +35,7 @@ const defaultState = {
         // 菜单类型
         type: MenuTypeEnum.SIDEBAR,
         // 菜单主题
-        // theme: ThemeEnum.DARK,
+        theme: ThemeEnum.DARK,
         // 顶部菜单布局
         topMenuAlign: 'center',
         // 折叠触发器的位置
