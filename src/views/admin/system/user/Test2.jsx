@@ -1,18 +1,16 @@
-import useName from "./useName"
+import React, { Component } from 'react'
 
-const Test2 = () => {
-    const {name, age} = useName()
-    console.log('test2');
-    return (
-        <div>
-            test2 ---- 
-            {name}
-            -----
-            {age}
-            `
-
-        </div>
-    )
+export default class test2 extends Component {
+    shouldComponentUpdate(preProps,preState){
+        return true
+    }
+    render() {
+        const {All} = this.props
+        return (
+            <div>
+                {All}
+                test
+            </div>
+        )
+    }
 }
-
-export default Test2
