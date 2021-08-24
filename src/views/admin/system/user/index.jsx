@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, useCallback } from "react"
+import { useState, useMemo, useRef, useCallback, useEffect } from "react"
 import { Button } from "antd"
 import Test1 from "./Test1"
 import Test2 from "./Test2"
@@ -13,6 +13,11 @@ const User = () => {
     const countAll = () => {
         return  count + 2
     }
+
+    useEffect(() => {
+        console.log(ref);
+    })
+
     const All1 = useCallback(()=>{countAll()},[count])
 
     return (
